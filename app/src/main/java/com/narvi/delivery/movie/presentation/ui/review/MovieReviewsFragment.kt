@@ -6,6 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -74,6 +75,8 @@ class MovieReviewsFragment : BaseFragment<FragmentMovieReviewsBinding, MovieRevi
             }
         }
     }
+
+
 
     private fun showDeleteConfirmDialog(review: Review) {
         AlertDialog.Builder(requireContext())

@@ -124,6 +124,7 @@ class MovieReviewsAdapter(private val movie: Movie) : RecyclerView.Adapter<Recyc
                     binding.reviewFieldEditText.text.toString(),
                     binding.ratingBar.rating
                 )
+                binding.reviewFieldEditText.text.clear()
             }
 
             binding.reviewFieldEditText.addTextChangedListener { editable ->
@@ -155,6 +156,7 @@ class MovieReviewsAdapter(private val movie: Movie) : RecyclerView.Adapter<Recyc
         init {
             binding.deleteButton.setOnClickListener {
                 onReviewDeleteButtonClickListener?.invoke(myReview!!)
+                notifyDataSetChanged()
             }
         }
 
