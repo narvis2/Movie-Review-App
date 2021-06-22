@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.narvi.delivery.movie.presentation.ui.home.HomeFragment"
+        android:label="영화" >
+        <action
+            android:id="@+id/action_homeFragment_to_movieReviewsFragment"
+            app:destination="@id/movie_reviews_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movie_reviews_fragment"
+        android:name="com.narvi.delivery.movie.presentation.ui.review.MovieReviewsFragment"
+        android:label="영화 상세" />
+    <fragment
+        android:id="@+id/my_page_fragment"
+        android:name="com.narvi.delivery.movie.presentation.ui.mypage.MyPageFragment"
+        android:label="내 리뷰" >
+        <action
+            android:id="@+id/action_myPageFragment_to_movieReviewsFragment"
+            app:destination="@id/movie_reviews_fragment" />
+    </fragment>
+</navigation>

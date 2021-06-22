@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "465777009135",
+    "project_id": "movie-review-e4d5d",
+    "storage_bucket": "movie-review-e4d5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465777009135:android:1bd0905cd1fad66870d61a",
+        "android_client_info": {
+          "package_name": "com.example.movie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465777009135-svtql5t8r8044d5vmdep6u6ok919nvap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBITYKYqvrkyRfOnPeaV5M8kJ0uf4sRgZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465777009135-svtql5t8r8044d5vmdep6u6ok919nvap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465777009135:android:14c68654cb10186470d61a",
+        "android_client_info": {
+          "package_name": "com.narvi.delivery.movie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465777009135-svtql5t8r8044d5vmdep6u6ok919nvap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBITYKYqvrkyRfOnPeaV5M8kJ0uf4sRgZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465777009135-svtql5t8r8044d5vmdep6u6ok919nvap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
