@@ -12,10 +12,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>(
     override val viewModel: MyPageViewModel by viewModel()
 
     override fun onCreate() {
-        TODO("Not yet implemented")
     }
 
     override fun observeData() {
-        TODO("Not yet implemented")
     }
 }

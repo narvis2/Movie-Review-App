@@ -11,4 +11,8 @@ class MovieApiDataSourceImpl(
     override suspend fun getAllMovies(): List<Movie> {
         return movieApi.getAllMovies()
     }
+
+    override suspend fun getMovies(movieIds: List<String>): List<Movie> {
+        return movieApi.getMovies(movieIds)
+    }
 }

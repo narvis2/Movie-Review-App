@@ -15,7 +15,11 @@
     <fragment
         android:id="@+id/movie_reviews_fragment"
         android:name="com.narvi.delivery.movie.presentation.ui.review.MovieReviewsFragment"
-        android:label="영화 상세" />
+        android:label="영화 상세" >
+        <argument
+            android:name="movie"
+            app:argType="com.narvi.delivery.movie.data.model.Movie" />
+    </fragment>
     <fragment
         android:id="@+id/my_page_fragment"
         android:name="com.narvi.delivery.movie.presentation.ui.mypage.MyPageFragment"

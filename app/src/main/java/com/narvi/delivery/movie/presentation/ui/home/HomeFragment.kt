@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.narvi.delivery.movie.R
@@ -30,15 +32,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
     override fun onCreate() {
         homeAdapter = HomeAdapter()
+        initViews()
         viewModel.fetchMovie()
+        bindView()
     }
 
     override fun observeData() = with(viewModel) {
         homeState.observe(viewLifecycleOwner, Observer {
             when(it) {
-                is HomeState.UnInitialized -> {
-                    initViews()
-                }
                 is HomeState.Loading -> {
                     handleLoading()
                 }
@@ -58,6 +59,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             val gridLayoutManager = createGridLayoutManager()
             layoutManager = gridLayoutManager
             addItemDecoration(GridSpacingItemDecoration(gridLayoutManager.spanCount, dip(6f)))
+        }
+    }
+
+    private fun bindView() {
+        homeAdapter.apply {
+            onMovieClickListener = { movie ->
+                val action = HomeFragmentDirections.actionHomeFragmentToMovieReviewsFragment(movie)
+                findNavController().navigate(action)
+            }
         }
     }
 

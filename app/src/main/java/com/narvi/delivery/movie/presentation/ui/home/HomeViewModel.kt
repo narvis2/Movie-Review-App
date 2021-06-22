@@ -14,7 +14,7 @@ class HomeViewModel(
     private val getRandomFeaturedMovieUseCase: GetRandomFeaturedMovieUseCase
 ) : BaseViewModel() {
 
-    private val _homeState = MutableLiveData<HomeState>(HomeState.UnInitialized)
+    private val _homeState = MutableLiveData<HomeState>()
     val homeState : LiveData<HomeState>
         get() = _homeState
 

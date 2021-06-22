@@ -4,7 +4,6 @@ import com.narvi.delivery.movie.data.model.FeaturedMovie
 import com.narvi.delivery.movie.data.model.Movie
 
 sealed class HomeState {
-    object UnInitialized : HomeState()
 
     object Loading : HomeState()
 

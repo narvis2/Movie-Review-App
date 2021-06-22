@@ -8,6 +8,7 @@ import com.narvi.delivery.movie.data.model.Review
 import com.narvi.delivery.movie.presentation.uitll.Constant.FIRESTORE_MOVIE_ID
 import com.narvi.delivery.movie.presentation.uitll.Constant.FIRESTORE_REVIEWS
 import com.narvi.delivery.movie.presentation.uitll.Constant.FIRESTORE_REVIEW_CREATEDAT
+import com.narvi.delivery.movie.presentation.uitll.Constant.FIRESTORE_REVIEW_USERID
 import kotlinx.coroutines.tasks.await
 
 class ReviewFirebaseApi(
@@ -24,6 +25,32 @@ class ReviewFirebaseApi(
                 it.toObject<Review>()
             }
             .firstOrNull()
+
+        return result
+    }
+
+    override suspend fun getAllMovieReviews(movieId: String): List<Review> {
+        val result = firestore.collection(FIRESTORE_REVIEWS)
+            .whereEqualTo(FIRESTORE_MOVIE_ID, movieId)
+            .orderBy(FIRESTORE_REVIEW_CREATEDAT, Query.Direction.DESCENDING)
+            .get()
+            .await()
+            .map {
+                it.toObject<Review>()
+            }
+
+        return result
+    }
+
+    override suspend fun getAllUserReviews(userId: String): List<Review> {
+        val result = firestore.collection(FIRESTORE_REVIEWS)
+            .whereEqualTo(FIRESTORE_REVIEW_USERID, userId)
+            .orderBy(FIRESTORE_REVIEW_CREATEDAT, Query.Direction.DESCENDING)
+            .get()
+            .await()
+            .map {
+                it.toObject<Review>()
+            }
 
         return result
     }

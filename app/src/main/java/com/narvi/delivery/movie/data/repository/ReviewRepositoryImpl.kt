@@ -10,7 +10,16 @@ class ReviewRepositoryImpl(
     private val reviewApiDataSource: ReviewApiDataSource,
     private val dispatcher: CoroutineDispatcher
 ) : ReviewRepository {
+
     override suspend fun getLatestReview(movieId: String): Review? = withContext(dispatcher) {
         reviewApiDataSource.getLatestReview(movieId)
+    }
+
+    override suspend fun getAllMovieReviews(movieId: String): List<Review> = withContext(dispatcher) {
+        reviewApiDataSource.getAllMovieReviews(movieId)
+    }
+
+    override suspend fun getAllUserReviews(userId: String): List<Review> = withContext(dispatcher) {
+        reviewApiDataSource.getAllUserReviews(userId)
     }
 }

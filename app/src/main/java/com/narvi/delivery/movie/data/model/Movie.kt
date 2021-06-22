@@ -1,7 +1,10 @@
 package com.narvi.delivery.movie.data.model
 
+import android.os.Parcelable
 import com.google.firebase.firestore.DocumentId
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
     @DocumentId
     val id: String? = null,
@@ -20,4 +23,4 @@ data class Movie(
     val numberOfScore: Int? = null,
     val releaseYear: Int? = null,
     val runtime: Int? = null
-)
+) : Parcelable
