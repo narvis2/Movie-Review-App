@@ -2,7 +2,7 @@ package com.narvi.delivery.movie.data.model
 
 import android.os.Parcelable
 import com.google.firebase.firestore.DocumentId
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Movie(

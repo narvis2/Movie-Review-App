@@ -22,4 +22,12 @@ class ReviewRepositoryImpl(
     override suspend fun getAllUserReviews(userId: String): List<Review> = withContext(dispatcher) {
         reviewApiDataSource.getAllUserReviews(userId)
     }
+
+    override suspend fun addReview(review: Review): Review = withContext(dispatcher){
+        reviewApiDataSource.addReview(review)
+    }
+
+    override suspend fun removeReview(review: Review) = withContext(dispatcher) {
+        reviewApiDataSource.removeReview(review)
+    }
 }

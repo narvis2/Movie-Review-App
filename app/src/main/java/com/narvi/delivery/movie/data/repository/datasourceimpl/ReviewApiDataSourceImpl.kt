@@ -18,4 +18,12 @@ class ReviewApiDataSourceImpl(
     override suspend fun getAllUserReviews(userId: String): List<Review> {
         return reviewApi.getAllUserReviews(userId)
     }
+
+    override suspend fun addReview(review: Review): Review {
+        return reviewApi.addReview(review)
+    }
+
+    override suspend fun removeReview(review: Review) {
+        return reviewApi.removeReview(review)
+    }
 }

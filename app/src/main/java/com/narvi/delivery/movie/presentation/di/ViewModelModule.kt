@@ -9,6 +9,6 @@ import org.koin.dsl.module
 
 val viewModelModule : Module = module {
     viewModel<HomeViewModel> { HomeViewModel(get(), get()) }
-    viewModel<MyPageViewModel> { MyPageViewModel() }
-    viewModel<MovieReviewsViewModel> { MovieReviewsViewModel(get()) }
+    viewModel<MyPageViewModel> { MyPageViewModel(get()) }
+    viewModel<MovieReviewsViewModel> { MovieReviewsViewModel(get(), get(), get()) }
 }

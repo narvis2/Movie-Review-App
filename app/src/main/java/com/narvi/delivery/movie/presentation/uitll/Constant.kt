@@ -17,4 +17,6 @@ object Constant {
 
     const val REVIEWS_ITEM_VIEW_TYPE_HEADER = 0
     const val REVIEWS_ITEM_VIEW_TYPE_ITEM = 1
+    const val REVIEWS_ITEM_VIEW_REVIEW_FORM = 2
+    const val REVIEWS_ITEM_VIEW_MY_REVIEW = 3
 }

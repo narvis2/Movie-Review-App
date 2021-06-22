@@ -1,5 +1,9 @@
 package com.narvi.delivery.movie.presentation.ui.review
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -7,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.narvi.delivery.movie.R
 import com.narvi.delivery.movie.data.model.Movie
+import com.narvi.delivery.movie.data.model.MovieReviews
 import com.narvi.delivery.movie.data.model.Review
 import com.narvi.delivery.movie.databinding.FragmentMovieReviewsBinding
 import com.narvi.delivery.movie.presentation.base.BaseFragment
@@ -28,6 +33,7 @@ class MovieReviewsFragment : BaseFragment<FragmentMovieReviewsBinding, MovieRevi
         movieReviewAdapter = MovieReviewsAdapter(arguments.movie)
         initViews()
         viewModel.fetchReviews(arguments.movie)
+        showMovieInformation(arguments.movie)
     }
 
     override fun observeData() = with(viewModel) {
@@ -37,10 +43,13 @@ class MovieReviewsFragment : BaseFragment<FragmentMovieReviewsBinding, MovieRevi
                     handleLoading()
                 }
                 is MovieReviewState.Success -> {
-                    showReviews(it.reviewList)
+                    showReviews(it.reviews)
                 }
                 is MovieReviewState.Error -> {
                     handleError(it.message)
+                }
+                is MovieReviewState.ToastError -> {
+                    handleToastError(it.message)
                 }
             }
         })
@@ -53,16 +62,42 @@ class MovieReviewsFragment : BaseFragment<FragmentMovieReviewsBinding, MovieRevi
         }
     }
 
+    private fun showMovieInformation(movie: Movie) {
+        movieReviewAdapter.apply {
+            onReviewSubmitButtonClickListener = { content, score ->
+                viewModel.requestAddReview(movie, content, score)
+                hideKeyboard()
+            }
+
+            onReviewDeleteButtonClickListener = { review ->
+                showDeleteConfirmDialog(review)
+            }
+        }
+    }
+
+    private fun showDeleteConfirmDialog(review: Review) {
+        AlertDialog.Builder(requireContext())
+            .setMessage("정말로 리뷰를 삭제하시겠어요?")
+            .setPositiveButton("삭제 할래요") { _, _ ->
+                viewModel.requestRemoveReview(review)
+            }
+            .setNegativeButton("안할래요") { _, _, ->
+
+            }
+            .show()
+    }
+
     private fun handleLoading() {
         binding.progressBar.toVisible()
     }
 
-    private fun showReviews(reviews: List<Review>) {
+    private fun showReviews(reviews: MovieReviews) {
         binding.progressBar.toGone()
         binding.recyclerView.toVisible()
         binding.errorDescriptionTextView.toGone()
         movieReviewAdapter.apply {
-            this.reviews = reviews
+            this.reviews = reviews.othersReview
+            this.myReview = reviews.myReview
             notifyDataSetChanged()
         }
     }
@@ -72,6 +107,15 @@ class MovieReviewsFragment : BaseFragment<FragmentMovieReviewsBinding, MovieRevi
         binding.recyclerView.toGone()
         binding.errorDescriptionTextView.toVisible()
         binding.errorDescriptionTextView.text = message
+    }
+
+    private fun handleToastError(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun hideKeyboard() {
+        val inputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
     }
 
 }
